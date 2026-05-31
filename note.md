@@ -35,3 +35,6 @@ nx run-many -t serve --all
     }
   }
 
+```
+### grpc funtion
+nx g @nx/nest:controller apps/products/src/app/product
