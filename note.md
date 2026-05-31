@@ -14,7 +14,7 @@ npm i @grpc/grpc-js @grpc/proto-loader
 
 npm i ts-proto
 
-npx protoc --ts_proto_out=./types/ ./proto/\*.proto --ts_proto_opt=nestJs=true
+npx protoc --ts_proto_out=./types/ ./proto/*.proto --ts_proto_opt=nestJs=true
 
 nx run-many -t serve --all
 
@@ -40,3 +40,24 @@ nx run-many -t serve --all
 nx g @nx/nest:controller apps/products/src/app/product
 
 nx g @nx/nest:controller apps/api-gateway/src/app/product
+
+### Automating TypeScript Code Generation with NX
+
+```json
+  "scripts": {
+    "generate-proto-types": "npx protoc --ts_proto_out=./types/ ./proto/*.proto --ts_proto_opt=nestJs=true"
+  },
+  "nx": {
+    "targets": {
+      "generate-proto-types": {
+        "cache": true,
+        "inputs": ["{workspaceRoot}/proto/*.proto"]
+      }
+    }
+  },
+
+```
+nx generate-proto-types
+
+* Edit apps\products\project.json
+
